@@ -7,10 +7,10 @@ angular.module('cimaLabApp',
   [
     'ionic',
     'ngMaterial',
-    'ngRoute'
+    'ngRoute',
+    'userSessionService'
   ])
 .run(function($ionicPlatform) {
-  // swal("sweet!");
   $ionicPlatform.ready(function() {
     if(window.cordova && window.cordova.plugins.Keyboard) {
       // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
@@ -45,19 +45,3 @@ angular.module('cimaLabApp',
     redirectTo: '/'
   });
 }])
-.controller('menuCtrl', function($scope, $timeout, $ionicModal, $ionicSideMenuDelegate) {
-  $scope.views = [{url: 'main'},{url: 'london'},{url: 'paris'}];
-
-  //FUNCION PARA ABRIR EL MENU LATERAL IZQUIERDO
-  $scope.toggleMenu = function() {
-    $ionicSideMenuDelegate.toggleLeft();
-  };
-
-  //FUNCION PARA ABRIR LA VISTA SELECCIONADA
-  $scope.selectView = function(view, index) {
-    $scope.activeView = view; //DEJAR SOMBREADA LA VISTA
-    var vista = view.url;
-    window.location.href = "#/"+vista+"";
-    $ionicSideMenuDelegate.toggleLeft(false);
-  };
-})

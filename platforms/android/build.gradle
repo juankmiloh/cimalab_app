@@ -170,6 +170,7 @@ android {
         if (cdvMinSdkVersion != null) {
             minSdkVersion cdvMinSdkVersion
         }
+        setProperty("archivesBaseName", "cima_lab")
     }
 
     lintOptions {
