@@ -2,10 +2,10 @@
 
 /**
  * @ngdoc service
- * @name userSessionService.usersRequest
+ * @name useressionService.userRequest
  * @description
- * # userSessionService
- * Factory in the usersRequest.
+ * # useressionService
+ * Factory in the userRequest.
  */
 angular.module('userSessionService', [])
 /**
@@ -13,17 +13,17 @@ angular.module('userSessionService', [])
  * from local storage, and also lets us save and load the
  * last active project index.
  */
-.factory('usersRequest', function() {
+.factory('userRequest', function() {
   return {
     all: function() {
-      var userString = window.sessionStorage['users'];
-      if(userString) {
-        return angular.fromJson(userString);
+      var usertring = window.sessionStorage['user'];
+      if(usertring) {
+        return angular.fromJson(usertring);
       }
       return [];
     },
-    save: function(users) {
-      window.sessionStorage['users'] = angular.toJson(users);
+    save: function(user) {
+      window.sessionStorage['user'] = angular.toJson(user);
     },
     newUser: function(nameUser, pass) {
       // Add a new user
@@ -33,8 +33,8 @@ angular.module('userSessionService', [])
       };
     },
     clearUser: function() {
-      window.sessionStorage.removeItem('users');
-      window.location.reload();
+      window.sessionStorage.removeItem('user');
+      // window.location.reload();
     }
   }
 })

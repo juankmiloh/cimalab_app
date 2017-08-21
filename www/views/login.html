@@ -1,0 +1,27 @@
+<div class="modal">
+
+  <!-- Modal header bar -->
+  <ion-header-bar class="bar-secondary">
+    <h1 class="title">INICIO DE SESIÓN</h1>
+  </ion-header-bar>
+
+  <!-- Modal content area -->
+  <ion-content>
+
+    <form ng-submit="createUser(user)">
+      <div class="list">
+        <label class="item item-input">
+          <input type="text" placeholder="Usuario" ng-model="user.name" required>
+        </label>
+        <label class="item item-input">
+          <input type="password" placeholder="Contraseña" ng-model="user.pass" required>
+        </label>
+      </div>
+      <div class="padding">
+        <button type="submit" class="button button-block button-positive">Iniciar Sesión</button>
+      </div>
+    </form>
+
+  </ion-content>
+
+</div>

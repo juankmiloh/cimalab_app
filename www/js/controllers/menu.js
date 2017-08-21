@@ -7,7 +7,7 @@
  * Controller of the cimaLabApp
  */
 angular.module('cimaLabApp')
-.controller('menuCtrl', function($scope, $timeout, $ionicModal, usersRequest, $ionicSideMenuDelegate) {
+.controller('menuCtrl', function($scope, $timeout, $ionicModal, userRequest, $ionicSideMenuDelegate) {
   //JSON DE LAS VISTAS DISPONIBLES EN EL MENU LATERAL
   $scope.views = [
                   {url: 'main'},
@@ -34,34 +34,56 @@ angular.module('cimaLabApp')
   *==============================================*/
 
   // CARGAR O INICIALIZAR USUARIO
-  $scope.users = usersRequest.all();
-  console.log($scope.users);
+  $scope.user = userRequest.all();
+  console.log($scope.user);
+  if($scope.user.length != 0) {
+    $scope.nombreUsuario = ($scope.user[0].name).toUpperCase();
+  }else{
+    // FUNCION PARA CREAR LA SESION DE USUARIO SE UTILIZA $timeout PARA APLAZAR LA EJECUCION
+    // PARA QUE TODO SE INICIALICE CORRECTAMENTE
+    $timeout(function() {
+      if($scope.user.length == 0) {
+        while(true) {
+          abrirLoginModal();
+          break;
+        }
+      }
+    }, 1000);
+  }
 
   // FUNCION PARA CREAR UNA NUEVA SESION DE USUARIO
-  var createUser = function(userName, pass) {
-    var newUser = usersRequest.newUser(userName, pass);
-    $scope.users.push(newUser);
-    usersRequest.save($scope.users);
+  $scope.createUser = function(data_user) {
+    var userName = data_user.name;
+    var pass = data_user.pass;
+    var newUser = userRequest.newUser(userName, pass);
+    $scope.user.push(newUser);
+    userRequest.save($scope.user);
     $scope.nombreUsuario = userName.toUpperCase();
+    closeLoginModal();
   }
 
   // FUNCION PARA ELIMINAR LA SESION DE USUARIO
   $scope.logoutUser = function() {
-    usersRequest.clearUser();
+    userRequest.clearUser();
+    abrirLoginModal();
   }
 
-  // FUNCION PARA CREAR LA SESION DE USUARIO SE UTILIZA $timeout PARA APLAZAR LA EJECUCION
-  // PARA QUE TODO SE INICIALICE CORRECTAMENTE
-  $timeout(function() {
-    if($scope.users.length == 0) {
-      while(true) {
-        var userName = prompt('Ingrese su usuario:');
-        var pass = prompt('Ingrese su contraseña:');
-        if(userName && pass) {
-          createUser(userName, pass);
-          break;
-        }
-      }
-    }
-  }, 1000);
+  /*=============================================
+  * OPCIONES MODAL LOGIN USUARIO
+  *==============================================*/
+
+  //CREAMOS EL MODAL
+  $ionicModal.fromTemplateUrl('./views/login.html', function(modal) {
+    $scope.loginModal = modal;
+  }, {
+    scope: $scope
+  });
+
+  var abrirLoginModal = function() {
+    $scope.loginModal.show();
+  };
+
+  var closeLoginModal = function() {
+    $scope.loginModal.hide();
+  }
 })
