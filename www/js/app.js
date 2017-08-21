@@ -3,9 +3,14 @@
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
-angular.module('starter', ['ionic'])
-
+angular.module('cimaLabApp',
+  [
+    'ionic',
+    'ngMaterial',
+    'ngRoute'
+  ])
 .run(function($ionicPlatform) {
+  // swal("sweet!");
   $ionicPlatform.ready(function() {
     if(window.cordova && window.cordova.plugins.Keyboard) {
       // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
@@ -22,11 +27,37 @@ angular.module('starter', ['ionic'])
     }
   });
 })
-.controller('TodoCtrl', function($scope) {
-  $scope.tasks = [
-    { title: 'Collect coins' },
-    { title: 'Eat mushrooms' },
-    { title: 'Get high enough to grab the flag' },
-    { title: 'Find the Princess' }
-  ];
+.config(['$locationProvider','$routeProvider', function($locationProvider, $routeProvider) {
+  $locationProvider.hashPrefix("");
+  $routeProvider
+  .when("/", {
+    templateUrl: 'views/main.html',
+    // controller: 'MainCtrl',
+    // controllerAs: 'main'
+  })
+  .when("/london", {
+    templateUrl : 'views/london.html',
+  })
+  .when("/paris", {
+    templateUrl : 'views/paris.html',
+  })
+  .otherwise({
+    redirectTo: '/'
+  });
+}])
+.controller('menuCtrl', function($scope, $timeout, $ionicModal, $ionicSideMenuDelegate) {
+  $scope.views = [{url: 'main'},{url: 'london'},{url: 'paris'}];
+
+  //FUNCION PARA ABRIR EL MENU LATERAL IZQUIERDO
+  $scope.toggleMenu = function() {
+    $ionicSideMenuDelegate.toggleLeft();
+  };
+
+  //FUNCION PARA ABRIR LA VISTA SELECCIONADA
+  $scope.selectView = function(view, index) {
+    $scope.activeView = view; //DEJAR SOMBREADA LA VISTA
+    var vista = view.url;
+    window.location.href = "#/"+vista+"";
+    $ionicSideMenuDelegate.toggleLeft(false);
+  };
 })

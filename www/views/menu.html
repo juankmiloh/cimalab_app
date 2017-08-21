@@ -1,0 +1,30 @@
+<ion-side-menus>
+
+  <!-- Center content -->
+  <ion-side-menu-content>
+    <ion-header-bar class="bar-dark">
+      <button class="button button-icon" ng-click="toggleMenu()">
+        <i class="icon ion-navicon"></i>
+      </button>
+      <h1 class="title">CUERPO DEL CONTENEDOR</h1>
+    </ion-header-bar>
+    <ion-content scroll="false">
+		<div ng-view=""></div>
+	</ion-content>
+  </ion-side-menu-content>
+
+  <!-- Left menu -->
+  <ion-side-menu side="left">
+    <ion-header-bar class="bar-dark">
+      <h1 class="title">OPCIONES</h1>
+    </ion-header-bar>
+    <ion-content scroll="false">
+		<ion-list>
+			<ion-item ng-repeat="view in views" ng-click="selectView(view, $index)" ng-class="{active: activeView == view}">
+			{{view.url}}
+			</ion-item>
+		</ion-list>
+    </ion-content>
+  </ion-side-menu>
+
+</ion-side-menus>
