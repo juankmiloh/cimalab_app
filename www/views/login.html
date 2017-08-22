@@ -7,15 +7,24 @@
 
   <!-- Modal content area -->
   <ion-content>
-
-    <form ng-submit="createUser(user)">
+    <form name="userForm" ng-submit="createUser(user)" method="post">
       <div class="list">
-        <label class="item item-input">
-          <input type="text" placeholder="Usuario" ng-model="user.name" required>
-        </label>
-        <label class="item item-input">
-          <input type="password" placeholder="Contraseña" ng-model="user.pass" required>
-        </label>
+        <md-input-container class="md-block" flex-gt-sm>
+          <label>Nombre de usuario</label>
+          <md-icon md-svg-src="img/icons/ic_person_24px.svg" class="name"></md-icon>
+          <input type="text" class="input-login" required name="name" ng-model="user.name" />    
+          <div ng-messages="userForm.name.$error">
+            <div ng-message="required">Usuario obligatorio.</div>
+          </div>
+        </md-input-container>
+        <md-input-container class="md-block" flex-gt-sm>
+          <label>Contraseña</label>
+          <md-icon md-svg-src="img/icons/ic_lock_24px.svg" class="name"></md-icon>
+          <input type="password" class="input-login" required name="pass" ng-model="user.pass" />
+          <div ng-messages="userForm.pass.$error">
+            <div ng-message="required">Contraseña obligatoria.</div>
+          </div>
+        </md-input-container>
       </div>
       <div class="padding">
         <button type="submit" class="button button-block button-positive">Iniciar Sesión</button>

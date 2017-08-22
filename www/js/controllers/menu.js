@@ -29,6 +29,8 @@ angular.module('cimaLabApp')
     $ionicSideMenuDelegate.toggleLeft(false);
   };
 
+  $scope.showHints = true;
+
   /*=============================================
   * CREACIÓN DE SESIÓN DE USUARIO
   *==============================================*/
@@ -37,7 +39,7 @@ angular.module('cimaLabApp')
   $scope.user = userRequest.all();
   console.log($scope.user);
   if($scope.user.length != 0) {
-    $scope.nombreUsuario = ($scope.user[0].name).toUpperCase();
+    $scope.nombreUsuario = ($scope.user.name).toUpperCase();
   }else{
     // FUNCION PARA CREAR LA SESION DE USUARIO SE UTILIZA $timeout PARA APLAZAR LA EJECUCION
     // PARA QUE TODO SE INICIALICE CORRECTAMENTE
@@ -56,8 +58,7 @@ angular.module('cimaLabApp')
     var userName = data_user.name;
     var pass = data_user.pass;
     var newUser = userRequest.newUser(userName, pass);
-    $scope.user.push(newUser);
-    userRequest.save($scope.user);
+    userRequest.save(newUser);
     $scope.nombreUsuario = userName.toUpperCase();
     closeLoginModal();
   }
@@ -65,7 +66,6 @@ angular.module('cimaLabApp')
   // FUNCION PARA ELIMINAR LA SESION DE USUARIO
   $scope.logoutUser = function() {
     userRequest.clearUser();
-    abrirLoginModal();
   }
 
   /*=============================================

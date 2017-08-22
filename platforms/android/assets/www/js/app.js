@@ -1,68 +1,47 @@
-angular.module('ionicApp', ['ionic'])
+// Ionic Starter App
 
-.config(function($stateProvider, $urlRouterProvider) {
+// angular.module is a global place for creating, registering and retrieving Angular modules
+// 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
+// the 2nd parameter is an array of 'requires'
+angular.module('cimaLabApp',
+  [
+    'ionic',
+    'ngMaterial',
+    'ngRoute',
+    'userSessionService'
+  ])
+.run(function($ionicPlatform) {
+  $ionicPlatform.ready(function() {
+    if(window.cordova && window.cordova.plugins.Keyboard) {
+      // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
+      // for form inputs)
+      cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
 
-  $stateProvider
-    .state('tabs', {
-      url: "/tab",
-      abstract: true,
-      templateUrl: "templates/tabs.html"
-    })
-    .state('tabs.home', {
-      url: "/home",
-      views: {
-        'home-tab': {
-          templateUrl: "templates/home.html",
-          controller: 'HomeTabCtrl'
-        }
-      }
-    })
-    .state('tabs.facts', {
-      url: "/facts",
-      views: {
-        'home-tab': {
-          templateUrl: "templates/facts.html"
-        }
-      }
-    })
-    .state('tabs.facts2', {
-      url: "/facts2",
-      views: {
-        'home-tab': {
-          templateUrl: "templates/facts2.html"
-        }
-      }
-    })
-    .state('tabs.about', {
-      url: "/about",
-      views: {
-        'about-tab': {
-          templateUrl: "templates/about.html"
-        }
-      }
-    })
-    .state('tabs.navstack', {
-      url: "/navstack",
-      views: {
-        'about-tab': {
-          templateUrl: "templates/nav-stack.html"
-        }
-      }
-    })
-    .state('tabs.contact', {
-      url: "/contact",
-      views: {
-        'contact-tab': {
-          templateUrl: "templates/contact.html"
-        }
-      }
-    });
-
-
-   $urlRouterProvider.otherwise("/tab/home");
-
+      // Don't remove this line unless you know what you are doing. It stops the viewport
+      // from snapping when text inputs are focused. Ionic handles this internally for
+      // a much nicer keyboard experience.
+      cordova.plugins.Keyboard.disableScroll(true);
+    }
+    if(window.StatusBar) {
+      StatusBar.styleDefault();
+    }
+  });
 })
-
-.controller('HomeTabCtrl', function($scope) {
-  console.log('HomeTabCtrl');
-});
+.config(['$locationProvider','$routeProvider', function($locationProvider, $routeProvider) {
+  $locationProvider.hashPrefix("");
+  $routeProvider
+  .when("/", {
+    templateUrl: 'views/main.html',
+    // controller: 'MainCtrl',
+    // controllerAs: 'main'
+  })
+  .when("/london", {
+    templateUrl : 'views/london.html',
+  })
+  .when("/paris", {
+    templateUrl : 'views/paris.html',
+  })
+  .otherwise({
+    redirectTo: '/'
+  });
+}])

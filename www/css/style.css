@@ -1,1 +1,15 @@
-/* Empty. Add your own CSS if you like */
+md-input-container .input-login {
+    border-bottom-style: solid !important;
+    border-bottom-color: rgba(0,0,0,0.12) !important;
+    border-bottom: 1px;
+}
+md-input-container .input-login:focus {
+    border-bottom: 1px;
+    border-bottom-style: solid !important;
+    border-bottom-color: blue !important;
+}
+md-input-container .input-login-error {
+    border-bottom: 1px;
+    border-bottom-style: solid !important;
+    border-bottom-color: #ec745d !important;
+}

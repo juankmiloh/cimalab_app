@@ -33,8 +33,9 @@ angular.module('userSessionService', [])
       };
     },
     clearUser: function() {
-      window.sessionStorage.removeItem('user');
-      // window.location.reload();
+      window.sessionStorage.removeItem('user');      
+      window.location.reload();
+      window.location.href = "#/";
     }
   }
 })
