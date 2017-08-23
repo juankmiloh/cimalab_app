@@ -49,6 +49,9 @@ angular.module('cimaLabApp',
   .when("/cliente", {
     templateUrl: 'views/cliente.html'
   })
+  .when("/metrologo", {
+    templateUrl: 'views/metrologo.html'
+  })
   .otherwise({
     redirectTo: '/'
   });

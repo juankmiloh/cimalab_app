@@ -13,7 +13,7 @@
         <center><label id="label_cabecera">MÓDULO PRINCIPAL</label></center>
       </div>
     </div>
-    <form name="userForm" ng-submit="createUser(user)" method="post">
+    <form name="userForm" ng-submit="validarUsuario(user)" method="post">
       <br>
       <div style="border-bottom: 1px solid rgba(0,0,0,0.12);"></div>
       <div class="row">
@@ -23,7 +23,7 @@
               <md-input-container class="md-block" flex-gt-sm>
                 <label>Nombre de usuario</label>
                 <md-icon md-svg-src="img/icons/ic_person_24px.svg" class="name"></md-icon>
-                <input type="text" class="input-login" required name="name" ng-model="user.name" />    
+                <input type="text" class="input-login" required name="name" ng-model="user.name" ng-focus="esconderTextoValidar()" />
                 <div ng-messages="userForm.name.$error">
                   <div ng-message="required">Usuario obligatorio.</div>
                 </div>
@@ -31,11 +31,12 @@
               <md-input-container class="md-block" flex-gt-sm>
                 <label>Contraseña</label>
                 <md-icon md-svg-src="img/icons/ic_lock_24px.svg" class="name"></md-icon>
-                <input type="password" class="input-login" required name="pass" ng-model="user.pass" />
+                <input type="password" class="input-login" required name="pass" ng-model="user.pass" ng-focus="esconderTextoValidar()" />
                 <div ng-messages="userForm.pass.$error">
                   <div ng-message="required">Contraseña obligatoria.</div>
                 </div>
               </md-input-container>
+              <center><span style="color: red;">{{validar_usuario}}</span></center>
             </div>
           </div>
         </div>

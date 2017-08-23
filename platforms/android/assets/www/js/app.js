@@ -9,7 +9,8 @@ angular.module('cimaLabApp',
     'ngMaterial',
     'ngMessages',
     'ngRoute',
-    'userSessionService'
+    'userSessionService',
+    'secLabUsersService'
   ])
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -31,16 +32,22 @@ angular.module('cimaLabApp',
 .config(['$locationProvider','$routeProvider', function($locationProvider, $routeProvider) {
   $locationProvider.hashPrefix("");
   $routeProvider
-  .when("/", {
-    templateUrl: 'views/main.html',
-    // controller: 'MainCtrl',
-    // controllerAs: 'main'
+  // .when("/", {
+  //   templateUrl: 'views/menu.html'
+  // })
+  .when("/admin", {
+    templateUrl: 'views/admin.html',
+    controller: 'AdminCtrl',
+    controllerAs: 'admin'
   })
-  .when("/london", {
-    templateUrl : 'views/london.html',
+  .when("/ingresos_almacen", {
+    templateUrl : 'views/ingresos_almacen.html',
   })
-  .when("/paris", {
-    templateUrl : 'views/paris.html',
+  .when("/salidas_almacen", {
+    templateUrl : 'views/salidas_almacen.html',
+  })
+  .when("/cliente", {
+    templateUrl: 'views/cliente.html'
   })
   .otherwise({
     redirectTo: '/'

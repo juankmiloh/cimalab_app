@@ -116,6 +116,15 @@ angular.module('cimaLabApp')
                          ];
           window.location.href = "#/cliente";
         }
+        if (rol == "Metrologos") {
+          //JSON DE LAS VISTAS DISPONIBLES EN EL MENU LATERAL
+          $scope.views = [
+                          {name : 'Ingresos a almacen', url: 'ingresos_almacen'},
+                          {name : 'Salidas del almacen', url: 'salidas_almacen'},
+                          {name : 'Verificar Proceso', url: 'verificar_proceso'}
+                         ];
+          window.location.href = "#/metrologo";
+        }
       }
       if (estado == "Contraseña Incorrecta." || estado == "Usuario no existe.") {
         $scope.validar_usuario = estado;
