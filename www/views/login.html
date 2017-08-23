@@ -1,36 +1,55 @@
-<div class="modal">
-
-  <!-- Modal header bar -->
-  <ion-header-bar class="bar-secondary">
-    <h1 class="title">INICIO DE SESIÓN</h1>
-  </ion-header-bar>
-
-  <!-- Modal content area -->
-  <ion-content>
-    <form name="userForm" ng-submit="createUser(user)" method="post">
-      <div class="list">
-        <md-input-container class="md-block" flex-gt-sm>
-          <label>Nombre de usuario</label>
-          <md-icon md-svg-src="img/icons/ic_person_24px.svg" class="name"></md-icon>
-          <input type="text" class="input-login" required name="name" ng-model="user.name" />    
-          <div ng-messages="userForm.name.$error">
-            <div ng-message="required">Usuario obligatorio.</div>
-          </div>
-        </md-input-container>
-        <md-input-container class="md-block" flex-gt-sm>
-          <label>Contraseña</label>
-          <md-icon md-svg-src="img/icons/ic_lock_24px.svg" class="name"></md-icon>
-          <input type="password" class="input-login" required name="pass" ng-model="user.pass" />
-          <div ng-messages="userForm.pass.$error">
-            <div ng-message="required">Contraseña obligatoria.</div>
-          </div>
-        </md-input-container>
+<div class="modal" style="width: 105%;">
+  <ion-content scroll="true">
+    <br>
+    <!-- Contenedor de la imagen banner y el título de la cabecera -->
+    <div class="row sombra">
+      <div class="col-xs-12 col-sm-12 col-md-12">
+        <img src="./images/logo_cima.png" class="img-responsive" alt="CIMA LTDA">
       </div>
-      <div class="padding">
-        <button type="submit" class="button button-block button-positive">Iniciar Sesión</button>
+    </div>
+    <br>
+    <div class="row sombra" id="header">
+      <div class="col-xs-12 col-sm-12 col-md-12">
+        <center><label id="label_cabecera">MÓDULO PRINCIPAL</label></center>
+      </div>
+    </div>
+    <form name="userForm" ng-submit="validarUsuario(user)" method="post">
+      <br>
+      <div style="border-bottom: 1px solid rgba(0,0,0,0.12);"></div>
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12">
+          <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12" style="padding-left: 10%;">
+              <md-input-container class="md-block" flex-gt-sm>
+                <label>Nombre de usuario</label>
+                <md-icon md-svg-src="img/icons/ic_person_24px.svg" class="name"></md-icon>
+                <input type="text" class="input-login" required name="name" ng-model="user.name" ng-focus="esconderTextoValidar()" />
+                <div ng-messages="userForm.name.$error">
+                  <div ng-message="required">Usuario obligatorio.</div>
+                </div>
+              </md-input-container>
+              <md-input-container class="md-block" flex-gt-sm>
+                <label>Contraseña</label>
+                <md-icon md-svg-src="img/icons/ic_lock_24px.svg" class="name"></md-icon>
+                <input type="password" class="input-login" required name="pass" ng-model="user.pass" ng-focus="esconderTextoValidar()" />
+                <div ng-messages="userForm.pass.$error">
+                  <div ng-message="required">Contraseña obligatoria.</div>
+                </div>
+              </md-input-container>
+              <center><span style="color: red;">{{validar_usuario}}</span></center>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div style="border-bottom: 1px solid rgba(0,0,0,0.12);"></div><br>
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12" style="text-align: center;">
+          <button type="submit" class="btn btn-primary btn-lg sombra" style="width: 80%;" onclick="window.plugins.insomnia.keepAwake()">
+            <span>Iniciar Sesión</span>
+          </button>
+        </div>
       </div>
     </form>
-
+    <br>
   </ion-content>
-
 </div>

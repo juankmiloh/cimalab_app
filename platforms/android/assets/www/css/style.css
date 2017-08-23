@@ -1,1 +1,25 @@
-/* Empty. Add your own CSS if you like */
+md-input-container .input-login {
+    border-bottom-style: solid !important;
+    border-bottom-color: #201a59 !important;
+    border-bottom: 1px;
+}
+md-input-container .input-login:focus {
+    border-bottom: 1px;
+    border-bottom-style: solid !important;
+    border-bottom-color: #428bca !important;
+}
+.sombra{
+	-webkit-box-shadow: 2px 2px 5px 0px rgba(0,0,0,0.75);
+	-moz-box-shadow: 2px 2px 5px 0px rgba(0,0,0,0.75);
+	box-shadow: 2px 2px 5px 0px rgba(0,0,0,0.75);
+}
+#header{
+	height: 3.5em;
+	background-color: #428bca;
+	padding-top: 3.5%;
+}
+#label_cabecera{
+	color: white;
+	font-weight: bold;
+	font-size: 100%;
+}

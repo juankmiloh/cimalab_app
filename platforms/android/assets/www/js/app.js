@@ -7,6 +7,7 @@ angular.module('cimaLabApp',
   [
     'ionic',
     'ngMaterial',
+    'ngMessages',
     'ngRoute',
     'userSessionService'
   ])

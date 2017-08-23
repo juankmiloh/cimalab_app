@@ -2,9 +2,9 @@
 
 /**
  * @ngdoc service
- * @name useressionService.userRequest
+ * @name userSessionService.userRequest
  * @description
- * # useressionService
+ * # userSessionService
  * Factory in the userRequest.
  */
 angular.module('userSessionService', [])
@@ -25,17 +25,18 @@ angular.module('userSessionService', [])
     save: function(user) {
       window.sessionStorage['user'] = angular.toJson(user);
     },
-    newUser: function(nameUser, pass) {
+    newUser: function(nameUser, password, tipoUser) {
       // Add a new user
       return {
         name: nameUser,
-        pass: pass
+        pass: password,
+        rol: tipoUser
       };
     },
     clearUser: function() {
       window.sessionStorage.removeItem('user');      
       window.location.reload();
-      window.location.href = "#/";
+      // window.location.href = "#/";
     }
   }
 })
